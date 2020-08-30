@@ -4,7 +4,7 @@ import { Genre } from "../../../model/Genre";
 import { genreFilter, searchFilter } from "../../../Utils/movieFilter";
 
 export const useFilter = () => {
-    const [filter, setFilter] = useState<IState>({ selectedGenre: {_id:0,name:"All Genres"}, searchQuery: "" });
+    const [filter, setFilter] = useState<IState>({ selectedGenre: { _id: 0, name: "All Genres" }, searchQuery: "" });
 
     const getFilteredMovies = useCallback((movies: Movie[]) => {
         return filter.searchQuery
@@ -13,20 +13,20 @@ export const useFilter = () => {
     }, [filter]);
 
     const onGenreClick = useCallback((genre: Genre) => {
-        setFilter({
+        setFilter(filter => ({
             ...filter,
             searchQuery: "",
             selectedGenre: genre
-        });
+        }));
     }, []);
 
     const onSearchMovie = useCallback((searchQuery: string) => {
-        setFilter({
+        setFilter(filter => ({
             ...filter,
             searchQuery,
-            selectedGenre: {_id:0,name:"All Genres"}
-        });
-    }, [])
+            selectedGenre: { _id: 0, name: "All Genres" }
+        }));
+    }, []);
 
     return { filter, getFilteredMovies, onGenreClick, onSearchMovie };
 };

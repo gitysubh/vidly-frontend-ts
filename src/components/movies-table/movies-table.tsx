@@ -15,6 +15,12 @@ const MoviesTable: React.SFC<MoviesTableProps> = (props) => {
         <li>{movie.title}</li>
       ))}
     </ul>
+    /* <Pagination
+            count={totalCount}
+            onPageChange={(pageNumber) => this.handlePageChange(pageNumber)}
+            pageSize={this.pageSize}
+            currentPage={this.state.currentPage}
+          /> */
   );
 };
 

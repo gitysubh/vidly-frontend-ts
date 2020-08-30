@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useMovies, useFilter } from "./hooks";
 import MoviesTable from "../../components/movies-table";
-import { genres } from "../../services/fakeGenreService";
 import ListGroup from "../../components/list-group";
 import Input from "../../components/input";
 import { KeyboardEvent } from "react";
@@ -49,14 +48,7 @@ const Movies: React.SFC = () => {
             value={filter.searchQuery}
           />
 
-          <MoviesTable movies={filteredMovies} />
-
-          {/* <Pagination
-            count={totalCount}
-            onPageChange={(pageNumber) => this.handlePageChange(pageNumber)}
-            pageSize={this.pageSize}
-            currentPage={this.state.currentPage}
-          /> */}
+          <MoviesTable movies={filteredMovies} />          
         </div>
       </div>
     </React.Fragment>
