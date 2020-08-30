@@ -1,9 +1,12 @@
-import * as React from 'react';
- 
+import * as React from "react";
+import { useMovies, useFilter } from "./hooks";
+import MoviesTable from "../../components/movies-table";
+
 const Movies: React.SFC = () => {
-  return ( 
-    <p>Movies</p>
-   );
-}
- 
+  const { movies } = useMovies();
+  const { setFilter, getFilteredMovies } = useFilter(movies);
+
+  return <MoviesTable movies={getFilteredMovies()} />;
+};
+
 export default Movies;

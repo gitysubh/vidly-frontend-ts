@@ -1,14 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Movie } from './../../model/Movie';
+import { getMovies } from '../../services/fakeMovieService';
 
-const initialState: Movie[] = []
+const initialState: Movie[] = [];
 
-const { reducer: movies, actions } = createSlice({
+const { reducer: movieReducer, actions } = createSlice({
     initialState,
     name: "movies",
     reducers: {
-        loadMovies(state: Movie[], action): Movie[] {
-            return [];
+        loadMovies(state, action: PayloadAction): Movie[] {
+            return getMovies();
         },
         addMovie(state: Movie[], action: PayloadAction<Movie>): Movie[] {
             return [...state, action.payload];
@@ -17,5 +18,5 @@ const { reducer: movies, actions } = createSlice({
 });
 
 
-export default movies;
+export default movieReducer;
 export const { loadMovies, addMovie } = actions;

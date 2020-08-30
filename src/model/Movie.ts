@@ -6,5 +6,6 @@ export interface Movie {
     numberInStock: number,
     dailyRentalRate: number,
     genre: Genre,
-    isLiked: boolean
+    publishDate?:string
+    isLiked?: boolean
 }
