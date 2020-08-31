@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Movie } from './../../model/Movie';
-import { getMovies } from '../../services/fakeMovieService';
+import { getMovies, deleteMovie as deleteMovieDb } from '../../services/fakeMovieService';
 
 const initialState: Movie[] = [];
 
@@ -19,11 +19,16 @@ const { reducer: movieReducer, actions } = createSlice({
             if (index > -1) {
                 state[index] = { ...state[index], isLiked: !!!state[index].isLiked };
             }
-            return state
+            return state;
+        },
+        deleteMovie(state, action: PayloadAction<string>) {
+            const newState = state.filter(item => item._id !== action.payload);
+            deleteMovieDb(action.payload);
+            return newState;
         }
     }
 });
 
 
 export default movieReducer;
-export const { loadMovies, addMovie, likeMovie } = actions;
+export const { loadMovies, addMovie, likeMovie, deleteMovie } = actions;

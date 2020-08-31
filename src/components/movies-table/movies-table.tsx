@@ -10,7 +10,7 @@ export interface MoviesTableProps {
 }
 
 const MoviesTable: React.SFC<MoviesTableProps> = React.memo((props) => {
-  const { onLikeMovie } = useMoviesTable(props.movies);
+  const { onLikeMovie, onDeleteMovie } = useMoviesTable(props.movies);
 
   const columns = [
     {
@@ -47,6 +47,23 @@ const MoviesTable: React.SFC<MoviesTableProps> = React.memo((props) => {
       ),
     },
   ];
+
+  const deleteColumn = {
+    key: "delete",
+    name: "Delete",
+    content: (movie: Movie) => {
+      return (
+        <button
+          onClick={() => onDeleteMovie(movie._id)}
+          className="btn btn-danger"
+        >
+          Delete
+        </button>
+      );
+    },
+  };
+
+  columns.push(deleteColumn);
 
   return <Table columns={columns} pageSize={4} data={props.movies} />;
 });
