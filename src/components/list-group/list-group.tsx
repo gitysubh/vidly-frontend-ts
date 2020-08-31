@@ -10,7 +10,7 @@ export interface ListGroupProps {
   onSelectItem: (selectedITem: any) => any;
 }
 
-const ListGroup: React.SFC<ListGroupProps> = ({
+const ListGroup: React.SFC<ListGroupProps> = React.memo(({
   items,
   selectedItem,
   textProperty,
@@ -34,6 +34,6 @@ const ListGroup: React.SFC<ListGroupProps> = ({
       })}
     </ul>
   );
-};
+});
 
 export default ListGroup;

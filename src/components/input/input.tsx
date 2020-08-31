@@ -7,7 +7,7 @@ export interface InputProps {
   [x: string]: any;
 }
 
-const Input: React.SFC<InputProps> = ({
+const Input: React.SFC<InputProps> = React.memo(({
   name,
   errorText,
   label,
@@ -25,6 +25,6 @@ const Input: React.SFC<InputProps> = ({
       <small className="invalid-feedback">{errorText}</small>
     </div>
   );
-};
+});
 
 export default Input;

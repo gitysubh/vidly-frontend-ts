@@ -8,7 +8,7 @@ export interface PaginationProps {
   currentPage: number;
 }
 
-const Pagination: React.SFC<PaginationProps> = (props) => {
+const Pagination: React.SFC<PaginationProps> = React.memo((props) => {
   const { count, pageSize, onPageChange, currentPage } = props;
 
   if (!count) return <></>;
@@ -35,6 +35,6 @@ const Pagination: React.SFC<PaginationProps> = (props) => {
       </ul>
     </nav>
   );
-};
+});
 
 export default Pagination;

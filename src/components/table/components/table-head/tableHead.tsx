@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Column, SortColumn } from "../../types";
 import useTableHead from "./hooks/useTableHead";
 
@@ -8,7 +8,7 @@ export interface TableHeadProps {
   onSort: (data: SortColumn) => any;
 }
 
-const TableHead: React.SFC<TableHeadProps> = (props: TableHeadProps) => {
+const TableHead: React.SFC<TableHeadProps> = React.memo((props: TableHeadProps) => {
   const { columns, sortColumn } = props;
   const { onRaiseSort } = useTableHead(props);
   return (
@@ -26,7 +26,7 @@ const TableHead: React.SFC<TableHeadProps> = (props: TableHeadProps) => {
       </tr>
     </thead>
   );
-};
+});
 export default TableHead;
 
 const getSortIcon = (path: string, sortColumn?: SortColumn) => {

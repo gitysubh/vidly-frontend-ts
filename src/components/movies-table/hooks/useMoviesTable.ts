@@ -1,17 +1,18 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import { Movie } from "../../../model/Movie";
+import { useDispatch } from "react-redux";
+import { likeMovie } from "../../../store/reducers/movieReducers";
+import { AppDispatch } from "../../../store";
 
 
 export const useMoviesTable = function (movies: Movie[]) {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [sortColumn, setSortColumn] = useState({ path: "title", order: "asc" });
+    const dispatch: AppDispatch = useDispatch();
 
-    const getPagedMovies = useCallback(() => {
-        return movies;
-    }, [movies]);
+    const onLikeMovie = useCallback((id: string) => {
+        dispatch(likeMovie(id));
+    }, [dispatch]);
 
     return {
-        currentPage,
-        getPagedMovies
+        onLikeMovie
     };
 };
