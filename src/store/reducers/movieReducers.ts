@@ -14,9 +14,16 @@ const { reducer: movieReducer, actions } = createSlice({
         addMovie(state: Movie[], action: PayloadAction<Movie>): Movie[] {
             return [...state, action.payload];
         },
+        likeMovie(state, action: PayloadAction<string>) {
+            const index = state.findIndex(movie => movie._id === action.payload);
+            if (index > -1) {
+                state[index] = { ...state[index], isLiked: !!!state[index].isLiked };
+            }
+            return state
+        }
     }
 });
 
 
 export default movieReducer;
-export const { loadMovies, addMovie } = actions;
+export const { loadMovies, addMovie, likeMovie } = actions;
