@@ -4,13 +4,11 @@ import { getMovies } from '../../services/fakeMovieService';
 import { AppDispatch } from '..';
 import { RootState } from '.';
 import { apiCallBegan } from './api';
+import { SliceStateBase } from '../types/sliceStateBase';
 
-interface IMovieState {
-    list: Movie[];
-    loadingStatus?: 'success' | 'idle' | 'failed';
-    lastFetchedTime?: number
+interface IMovieState extends SliceStateBase{
+    list: Movie[];    
 }
-
 const initialState: IMovieState = {
     list: []
 };
@@ -50,5 +48,5 @@ export const loadMovies = () => {
         url: apiEndpoint,
         method: 'get',
         onSuccess: moviesLoaded.type
-    })
+    });
 }
