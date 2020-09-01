@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Movie } from './../../model/Movie';
+import { Movie } from '../../model/Movie';
 import { getMovies } from '../../services/fakeMovieService';
 
 const initialState: Movie[] = [];

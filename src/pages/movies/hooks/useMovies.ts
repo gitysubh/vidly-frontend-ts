@@ -1,9 +1,9 @@
-import { useTypedSelector } from "../../../store/reducers";
+import { useTypedSelector } from "../../../store/slices";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store";
-import { loadMovies } from "../../../store/reducers/movieReducers";
-import { loadGenres } from "../../../store/reducers/gnereReducer";
+import { loadMovies } from "../../../store/slices/movieReducers";
+import { loadGenres } from "../../../store/slices/gnereReducer";
 
 
 export const useMovies = () => {
