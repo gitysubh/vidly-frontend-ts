@@ -2,7 +2,6 @@ import * as React from "react";
 import { Movie } from "../../model/Movie";
 import { useMoviesTable } from "./hooks/useMoviesTable";
 import Table from "../table";
-import { Column } from "../table/types";
 import { Link } from "react-router-dom";
 
 export interface MoviesTableProps {
