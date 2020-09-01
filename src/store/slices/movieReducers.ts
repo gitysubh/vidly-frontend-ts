@@ -3,8 +3,6 @@ import { Movie } from '../../model/Movie';
 import { RootState } from '.';
 import { apiCallBegan } from './api';
 import { SliceStateBase } from '../types/sliceStateBase';
-import { getMovies, deleteMovie as deleteMovieDb } from '../../services/fakeMovieService';
-
 
 interface IMovieState extends SliceStateBase {
     list: Movie[];
@@ -32,17 +30,15 @@ const { reducer: movieReducer, actions } = createSlice({
             }
             return state
         },
-        deleteMovie(state, action: PayloadAction<string>) {
-            const newState = { ...state, list: state.list.filter(item => item._id !== action.payload) };
-            deleteMovieDb(action.payload);
+        movieDeleted(state, action: PayloadAction<Movie>) {
+            const newState = { ...state, list: state.list.filter(item => item._id !== action.payload._id) };
             return newState;
         }
     }
 });
 
 export default movieReducer;
-const { moviesLoaded, addMovie } = actions;
-export const { likeMovie, deleteMovie } = actions
+export const { likeMovie } = actions
 
 // Selectors
 export const allMovieSelector = () => (state: RootState) => state.movies.list;
@@ -52,6 +48,13 @@ export const loadMovies = () => {
     return apiCallBegan({
         url: apiEndpoint,
         method: 'get',
-        onSuccess: moviesLoaded.type
+        onSuccess: actions.moviesLoaded.type
+    });
+}
+export const deleteMovie = (id: string) => {
+    return apiCallBegan({
+        url: `${apiEndpoint}/${id}`,
+        method: 'delete',
+        onSuccess: actions.movieDeleted.type
     });
 }

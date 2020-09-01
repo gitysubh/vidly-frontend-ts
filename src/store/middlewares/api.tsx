@@ -42,6 +42,12 @@ function performHttpAction(
     case "get":
       return httpService.get(payload.url);
       break;
+    case "post":
+      return httpService.post(payload.url, payload.data);
+      break;
+    case "delete":
+      return httpService.delete(payload.url);
+      break;
     // TODO: Implement rest
   }
   return Promise.reject();
