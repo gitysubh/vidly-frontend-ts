@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TableHead, TableBody } from "./components";
-import { Column, SortColumn } from "./types";
+import { Column } from "./types";
 import Pagination from "./components/pagination/pagination";
 import useTable from "./hooks";
 
@@ -10,7 +10,7 @@ export interface TableProps {
   pageSize?: number;
 }
 
-const Table: React.SFC<TableProps> = (props: TableProps) => {
+const Table: React.SFC<TableProps> = React.memo((props: TableProps) => {
   const { columns, data, pageSize } = props;
   const { state, onSort, onPaginate, getPagedData } = useTable(props);
 
@@ -36,6 +36,6 @@ const Table: React.SFC<TableProps> = (props: TableProps) => {
       )}
     </div>
   );
-};
+});
 
 export default Table;

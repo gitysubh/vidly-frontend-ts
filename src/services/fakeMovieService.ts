@@ -92,7 +92,9 @@ export function saveMovie(movie: Movie) {
 }
 
 export function deleteMovie(id: string) {
-    // let movieInDb = movies.find(m => m._id === id);
-    // movies.splice(movies.indexOf(movieInDb), 1);
-    // return movieInDb;
+    let movieInDb = movies.find(m => m._id === id);
+    if (movieInDb) {
+        movies.splice(movies.indexOf(movieInDb), 1);
+    }
+    return movieInDb;
 }
