@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store";
 import { loadMovies, allMovieSelector } from "../../../store/slices/movieReducers";
-import { loadGenres, allGenreSelector } from "../../../store/slices/gnereReducer";
+import { allGenreSelector } from "../../../store/slices/genreReducer";
 
 
 export const useMovies = () => {

@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Movie } from '../../model/Movie';
-import { getMovies } from '../../services/fakeMovieService';
-import { AppDispatch } from '..';
 import { RootState } from '.';
 import { apiCallBegan } from './api';
 import { SliceStateBase } from '../types/sliceStateBase';
+import { getMovies, deleteMovie as deleteMovieDb } from '../../services/fakeMovieService';
 
-interface IMovieState extends SliceStateBase{
-    list: Movie[];    
+
+interface IMovieState extends SliceStateBase {
+    list: Movie[];
 }
 const initialState: IMovieState = {
     list: []
@@ -31,13 +31,18 @@ const { reducer: movieReducer, actions } = createSlice({
                 state.list[index] = { ...state.list[index], isLiked: !!!state.list[index].isLiked };
             }
             return state
+        },
+        deleteMovie(state, action: PayloadAction<string>) {
+            const newState = { ...state, list: state.list.filter(item => item._id !== action.payload) };
+            deleteMovieDb(action.payload);
+            return newState;
         }
     }
 });
 
 export default movieReducer;
 const { moviesLoaded, addMovie } = actions;
-export const { likeMovie } = actions
+export const { likeMovie, deleteMovie } = actions
 
 // Selectors
 export const allMovieSelector = () => (state: RootState) => state.movies.list;

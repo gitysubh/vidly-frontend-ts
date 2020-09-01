@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware, Middleware } from "@reduxjs/toolkit";
 import rootReducer from "./slices";
 import { api } from './middlewares';
-import { loadGenres } from "./slices/gnereReducer";
+import { loadGenres } from "./slices/genreReducer";
 
 const store = configureStore({
     reducer: rootReducer,

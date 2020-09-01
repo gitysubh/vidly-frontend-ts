@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Genre } from "../../model/Genre";
-import { getGenres } from "../../services/fakeGenreService"
 import { apiCallBegan } from "./api";
 import { SliceStateBase } from "../types/sliceStateBase";
 import { RootState } from ".";

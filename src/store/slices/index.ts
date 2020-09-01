@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import movieReducer from "./movieReducers";
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
-import genreReducer from "./gnereReducer";
+import genreReducer from "./genreReducer";
 
 const rootReducer = combineReducers({
     movies: movieReducer,
